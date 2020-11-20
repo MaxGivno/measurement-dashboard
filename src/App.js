@@ -64,21 +64,12 @@ function App() {
     return () => {
       // Close the socket on component unmount
       socket.close()
-      socket.onclose = (e) => {
-        if (e.wasClean) {
-          console.log(
-            `Connection closed cleanly, code=${e.code} reason=${e.reason}`
-          )
-        } else {
-          console.log('Connection died')
-        }
-      }
     }
   }, [])
 
   return (
     <>
-      <h1>Measurements Dashboard</h1>
+      <h1 className='title'>Measurements Dashboard</h1>
       <div className='container'>
         {data.length > 0 &&
           data.map((block) => (
