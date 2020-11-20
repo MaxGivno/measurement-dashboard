@@ -34,14 +34,16 @@ const Block = ({ name, unit, measurements }) => {
       ? Number(value).toFixed(2)
       : typeof value === 'string'
       ? Number(value)
-      : convertDMS(value[0], value[1])
+      : Array.isArray(value)
+      ? convertDMS(value[0], value[1])
+      : 'No Data'
 
   return (
     <div className='block-container'>
       <h1>{name}</h1>
       <div className='value'>
         {recentValue && recentValue}
-        {unit && <span> {unit}</span>}
+        {unit && recentValue !== 'No Data' && <span> {unit}</span>}
       </div>
       <div className='measurements'>
         {measurements.length > 0
